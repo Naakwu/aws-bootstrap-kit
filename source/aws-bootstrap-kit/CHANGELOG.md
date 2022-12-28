@@ -1,7 +1,8 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.7.7](https://github.com/Naakwu/aws-bootstrap-kit/compare/v0.7.4...v0.7.7) (2022-12-28)
 
 ## [0.7.6](https://github.com/awslabs/aws-bootstrap-kit/compare/aws-bootstrap-kit@0.7.5...aws-bootstrap-kit@0.7.6) (2022-10-28)
 
