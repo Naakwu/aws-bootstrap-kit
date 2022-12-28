@@ -231,6 +231,6 @@ export class AwsOrganizationsStack extends Stack {
       });
     }
 
-    new SecureRootUser(this, 'SecureRootUser', email);
+    //new SecureRootUser(this, 'SecureRootUser', email);
   }
 }

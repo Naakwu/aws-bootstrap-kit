@@ -68,6 +68,7 @@ export class ConfigRecorder extends Construct {
       }),
     );
 
+    // check for existing delivery channel
     new cfg.CfnDeliveryChannel(this, 'ConfigDeliveryChannel', {
       s3BucketName: configBucket.bucketName,
       name: "ConfigDeliveryChannel"
@@ -80,6 +81,7 @@ export class ConfigRecorder extends Construct {
       managedPolicies: [iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AWS_ConfigRole')]
     });
 
+    // check for existing config recorder
     new cfg.CfnConfigurationRecorder(this, 'ConfigRecorder', {
       name: "BlueprintConfigRecorder",
       roleArn: configRole.roleArn,
