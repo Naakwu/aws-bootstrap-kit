@@ -19,7 +19,6 @@ import {RemovalPolicy, Stack, StackProps} from 'aws-cdk-lib';
 import {Organization} from './organization';
 import {OrganizationalUnit} from './organizational-unit';
 import {Account, AccountType} from './account';
-import {SecureRootUser} from './secure-root-user';
 import {OrganizationTrail} from './organization-trail';
 import {version} from '../package.json';
 import { RootDns } from './dns';

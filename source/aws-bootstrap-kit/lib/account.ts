@@ -20,6 +20,7 @@ import { AccountProvider } from "./account-provider";
 import * as cr from "aws-cdk-lib/custom-resources";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import { RemovalPolicy } from 'aws-cdk-lib';
+import {RetentionDays} from "aws-cdk-lib/aws-logs";
 
 /**
  * Properties of an AWS account
@@ -214,6 +215,7 @@ export class Account extends Construct {
             ChildId: accountId,
           },
         },
+        logRetention: RetentionDays.ONE_WEEK,
         policy: cr.AwsCustomResourcePolicy.fromSdkCalls({
           resources: cr.AwsCustomResourcePolicy.ANY_RESOURCE,
         }),
@@ -233,6 +235,7 @@ export class Account extends Construct {
             },
             ignoreErrorCodesMatching: 'DuplicateAccountException' // ignore if account is already there
           },
+          logRetention: RetentionDays.ONE_WEEK,
           policy: cr.AwsCustomResourcePolicy.fromSdkCalls({
             resources: cr.AwsCustomResourcePolicy.ANY_RESOURCE,
           }),
@@ -243,7 +246,7 @@ export class Account extends Construct {
       // Enabling Organizations listAccounts call for auto resolution of stages and DNS accounts Ids and Names
       if (accountProps.type === AccountType.CICD) {
         // removed for existing accounts
-        // this.registerAsDelegatedAdministrator(accountId, 'ssm.amazonaws.com');
+        this.registerAsDelegatedAdministrator(accountId, 'ssm.amazonaws.com');
       } else {
        // Switching to another principal to workaround the max number of delegated administrators (which is set to 3 by default).
        const needsToBeDelegatedForDNSZOneNameResolution = this.node.tryGetContext('domain_name') ?? false;
@@ -263,6 +266,7 @@ export class Account extends Construct {
           action: 'registerDelegatedAdministrator', // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Organizations.html#registerDelegatedAdministrator-property
           physicalResourceId: cr.PhysicalResourceId.of('registerDelegatedAdministrator'),
           region: 'us-east-1', //AWS Organizations API are only available in us-east-1 for root actions
+
           parameters: {
             AccountId: accountId,
             ServicePrincipal: servicePrincipal
@@ -279,6 +283,7 @@ export class Account extends Construct {
           }
         },
         installLatestAwsSdk: false,
+        logRetention: RetentionDays.ONE_WEEK,
         policy: cr.AwsCustomResourcePolicy.fromSdkCalls(
           {
             resources: cr.AwsCustomResourcePolicy.ANY_RESOURCE
