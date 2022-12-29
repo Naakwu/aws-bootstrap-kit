@@ -72,6 +72,8 @@ export interface AccountSpec {
    * @default RemovalPolicy.RETAIN
    */
   readonly removalPolicy?: RemovalPolicy;
+
+  readonly organisationLabel?: string,
 }
 
 /**
@@ -129,6 +131,8 @@ export interface AwsOrganizationsStackProps extends StackProps {
   * Enable Email Verification Process
   */
   readonly forceEmailVerification?: boolean,
+
+  readonly organisationLabel?: string,
 }
 
 /**
@@ -140,6 +144,7 @@ export class AwsOrganizationsStack extends Stack {
   private readonly domain?: string;
   private readonly stageAccounts: Account[] = [];
   public readonly rootDns?: RootDns;
+  private readonly orgLabel?: string;
 
   private createOrganizationTree(oUSpec: OUSpec, parentId: string, previousSequentialConstruct: IDependable): IDependable {
 
@@ -174,6 +179,7 @@ export class AwsOrganizationsStack extends Stack {
         hostedServices: accountSpec.hostedServices,
         id: accountSpec.existingAccountId,
         removalPolicy: accountSpec.removalPolicy,
+        organisationLabel: accountSpec.organisationLabel,
       });
 
       // Adding an explicit dependency as CloudFormation won't infer that Organization, Organizational Units and Accounts must be created or modified sequentially
@@ -230,6 +236,9 @@ export class AwsOrganizationsStack extends Stack {
       });
     }
 
+    if (props.organisationLabel){
+      this.orgLabel = props.organisationLabel;
+    }
     //new SecureRootUser(this, 'SecureRootUser', email);
   }
 }

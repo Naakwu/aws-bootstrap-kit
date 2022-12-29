@@ -68,6 +68,8 @@ export interface IAccountProps {
    * @default RemovalPolicy.RETAIN
    */
   removalPolicy?: RemovalPolicy;
+
+  organisationLabel?: string;
 }
 
 /**
@@ -196,9 +198,12 @@ export class Account extends Construct {
     this.accountStageName = accountProps.stageName;
     this.accountStageOrder = accountProps.stageOrder;
 
+    const orglabel = accountProps.organisationLabel? accountProps.organisationLabel : 'kodawa';
+
+// add organisation and build details to this
     let ssmParam = new ssm.StringParameter(this, existingAccount?`${accountId}-AccountDetails`:`${accountProps.name}-AccountDetails`, {
       description: `Details of ${accountProps.name}`,
-      parameterName: `/accounts/${accountProps.name}`,
+      parameterName: `/accounts/${orglabel}/${accountProps.name}`,
       simpleName: false,
       stringValue: JSON.stringify(accountProps),
     });
