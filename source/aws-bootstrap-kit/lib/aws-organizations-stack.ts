@@ -144,7 +144,7 @@ export class AwsOrganizationsStack extends Stack {
   private readonly domain?: string;
   private readonly stageAccounts: Account[] = [];
   public readonly rootDns?: RootDns;
-  private readonly orgLabel?: string;
+  // private readonly orgLabel?: string;
 
   private createOrganizationTree(oUSpec: OUSpec, parentId: string, previousSequentialConstruct: IDependable): IDependable {
 
@@ -237,7 +237,9 @@ export class AwsOrganizationsStack extends Stack {
     }
 
     if (props.organisationLabel){
-      this.orgLabel = props.organisationLabel;
+      // this.orgLabel = props.organisationLabel;
+    } else{
+
     }
     //new SecureRootUser(this, 'SecureRootUser', email);
   }

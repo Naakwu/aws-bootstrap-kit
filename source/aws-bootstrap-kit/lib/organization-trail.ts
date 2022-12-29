@@ -166,35 +166,55 @@ export class OrganizationTrail extends Construct {
             }
         ));
 
-        const startLogging =  new AwsCustomResource(this,
-            "OrganizationTrailStartLogging",
-            {
-                onCreate: {
-                    service: 'CloudTrail',
-                    action: 'startLogging', //call startLogging of the Javascript SDK https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudTrail.html#startLogging-property
-                    physicalResourceId: PhysicalResourceId.of('OrganizationTrailStartLogging'),
-                    parameters:
-                    {
-                        Name: organizationTrailName
-                    }
-                },
-                onDelete: {
-                    service: 'CloudTrail',
-                    action: 'stopLogging', //call stopLogging of the Javascript SDK https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudTrail.html#stopLogging-property
-                    physicalResourceId: PhysicalResourceId.of('OrganizationTrailStartLogging'),
-                    parameters:
-                    {
-                        Name: organizationTrailName
-                    }
-                },
-                installLatestAwsSdk: false,
-                policy: AwsCustomResourcePolicy.fromSdkCalls(
-                    {
-                        resources: AwsCustomResourcePolicy.ANY_RESOURCE
-                    }
-                )
-            }
-        );
-        startLogging.node.addDependency(organizationTrailCreate);
+        // disabled Error due to policy
+        // 2022-12-29T20:47:10.069Z	dd6ee944-0e48-4bc4-8ab9-d2ecc2810651	INFO	AccessDeniedException: User: arn:aws:sts::234238931102:assumed-role/Prod-kodwa-b2-orgStack-ko-AWS679f53fac002430cb0da5-1FVCMETUIAJKI/Prod-kodwa-b2-orgStack-ko-AWS679f53fac002430cb0da5-hthrlcBixcO9 is not authorized to perform: cloudtrail:StartLogging on resource: arn:aws:cloudtrail:eu-west-2:234238931102:trail/OrganizationTrail because no identity-based policy allows the cloudtrail:StartLogging action
+        //     at Request.extractError (/var/runtime/node_modules/aws-sdk/lib/protocol/json.js:52:27)
+        //     at Request.callListeners (/var/runtime/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+        //     at Request.emit (/var/runtime/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+        //     at Request.emit (/var/runtime/node_modules/aws-sdk/lib/request.js:686:14)
+        //     at Request.transition (/var/runtime/node_modules/aws-sdk/lib/request.js:22:10)
+        //     at AcceptorStateMachine.runTo (/var/runtime/node_modules/aws-sdk/lib/state_machine.js:14:12)
+        //     at /var/runtime/node_modules/aws-sdk/lib/state_machine.js:26:10
+        //     at Request.<anonymous> (/var/runtime/node_modules/aws-sdk/lib/request.js:38:9)
+        //     at Request.<anonymous> (/var/runtime/node_modules/aws-sdk/lib/request.js:688:12)
+        //     at Request.callListeners (/var/runtime/node_modules/aws-sdk/lib/sequential_executor.js:116:18) {
+        //   code: 'AccessDeniedException',
+        //   time: 2022-12-29T20:47:10.010Z,
+        //   requestId: '199fa750-61aa-4114-bf25-b4189352995e',
+        //   statusCode: 400,
+        //   retryable: false,
+        //   retryDelay: 96.13506571773598
+        // }
+
+        // const startLogging =  new AwsCustomResource(this,
+        //     "OrganizationTrailStartLogging",
+        //     {
+        //         onCreate: {
+        //             service: 'CloudTrail',
+        //             action: 'startLogging', //call startLogging of the Javascript SDK https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudTrail.html#startLogging-property
+        //             physicalResourceId: PhysicalResourceId.of('OrganizationTrailStartLogging'),
+        //             parameters:
+        //             {
+        //                 Name: organizationTrailName
+        //             }
+        //         },
+        //         onDelete: {
+        //             service: 'CloudTrail',
+        //             action: 'stopLogging', //call stopLogging of the Javascript SDK https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudTrail.html#stopLogging-property
+        //             physicalResourceId: PhysicalResourceId.of('OrganizationTrailStartLogging'),
+        //             parameters:
+        //             {
+        //                 Name: organizationTrailName
+        //             }
+        //         },
+        //         installLatestAwsSdk: false,
+        //         policy: AwsCustomResourcePolicy.fromSdkCalls(
+        //             {
+        //                 resources: AwsCustomResourcePolicy.ANY_RESOURCE
+        //             }
+        //         )
+        //     }
+        // );
+        // startLogging.node.addDependency(organizationTrailCreate);
     }
 }

@@ -4,42 +4,42 @@
 
 Name|Description
 ----|-----------
-[Account](#aws-bootstrap-kit-account)|An AWS Account.
-[AwsOrganizationsStack](#aws-bootstrap-kit-awsorganizationsstack)|A Stack creating the Software Development Life Cycle (SDLC) Organization.
-[CrossAccountDNSDelegator](#aws-bootstrap-kit-crossaccountdnsdelegator)|TODO: propose this to fix https://github.com/aws/aws-cdk/issues/8776 High-level construct that creates: 1. A public hosted zone in the current account 2. A record name in the hosted zone id of target account.
-[RootDns](#aws-bootstrap-kit-rootdns)|A class creating the main hosted zone and a role assumable by stages account to be able to set sub domain delegation.
-[SecureRootUser](#aws-bootstrap-kit-securerootuser)|*No description*
-[ValidateEmail](#aws-bootstrap-kit-validateemail)|Email Validation.
+[Account](#naakwu-aws-bootstrap-kit-account)|An AWS Account.
+[AwsOrganizationsStack](#naakwu-aws-bootstrap-kit-awsorganizationsstack)|A Stack creating the Software Development Life Cycle (SDLC) Organization.
+[CrossAccountDNSDelegator](#naakwu-aws-bootstrap-kit-crossaccountdnsdelegator)|TODO: propose this to fix https://github.com/aws/aws-cdk/issues/8776 High-level construct that creates: 1. A public hosted zone in the current account 2. A record name in the hosted zone id of target account.
+[RootDns](#naakwu-aws-bootstrap-kit-rootdns)|A class creating the main hosted zone and a role assumable by stages account to be able to set sub domain delegation.
+[SecureRootUser](#naakwu-aws-bootstrap-kit-securerootuser)|*No description*
+[ValidateEmail](#naakwu-aws-bootstrap-kit-validateemail)|Email Validation.
 
 
 **Structs**
 
 Name|Description
 ----|-----------
-[AccountSpec](#aws-bootstrap-kit-accountspec)|AWS Account input details.
-[AwsOrganizationsStackProps](#aws-bootstrap-kit-awsorganizationsstackprops)|Properties for AWS SDLC Organizations Stack.
-[OUSpec](#aws-bootstrap-kit-ouspec)|Organizational Unit Input details.
-[RootDnsProps](#aws-bootstrap-kit-rootdnsprops)|Properties for RootDns.
-[ValidateEmailProps](#aws-bootstrap-kit-validateemailprops)|Properties of ValidateEmail.
+[AccountSpec](#naakwu-aws-bootstrap-kit-accountspec)|AWS Account input details.
+[AwsOrganizationsStackProps](#naakwu-aws-bootstrap-kit-awsorganizationsstackprops)|Properties for AWS SDLC Organizations Stack.
+[OUSpec](#naakwu-aws-bootstrap-kit-ouspec)|Organizational Unit Input details.
+[RootDnsProps](#naakwu-aws-bootstrap-kit-rootdnsprops)|Properties for RootDns.
+[ValidateEmailProps](#naakwu-aws-bootstrap-kit-validateemailprops)|Properties of ValidateEmail.
 
 
 **Interfaces**
 
 Name|Description
 ----|-----------
-[IAccountProps](#aws-bootstrap-kit-iaccountprops)|Properties of an AWS account.
-[ICrossAccountDNSDelegatorProps](#aws-bootstrap-kit-icrossaccountdnsdelegatorprops)|Properties to create delegated subzone of a zone hosted in a different account.
+[IAccountProps](#naakwu-aws-bootstrap-kit-iaccountprops)|Properties of an AWS account.
+[ICrossAccountDNSDelegatorProps](#naakwu-aws-bootstrap-kit-icrossaccountdnsdelegatorprops)|Properties to create delegated subzone of a zone hosted in a different account.
 
 
 **Enums**
 
 Name|Description
 ----|-----------
-[AccountType](#aws-bootstrap-kit-accounttype)|The type of the AWS account.
+[AccountType](#naakwu-aws-bootstrap-kit-accounttype)|The type of the AWS account.
 
 
 
-## class Account  <a id="aws-bootstrap-kit-account"></a>
+## class Account  <a id="naakwu-aws-bootstrap-kit-account"></a>
 
 An AWS Account.
 
@@ -57,7 +57,7 @@ new Account(scope: Construct, id: string, accountProps: IAccountProps)
 
 * **scope** (<code>[Construct](#constructs-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
-* **accountProps** (<code>[IAccountProps](#aws-bootstrap-kit-iaccountprops)</code>)  *No description*
+* **accountProps** (<code>[IAccountProps](#naakwu-aws-bootstrap-kit-iaccountprops)</code>)  *No description*
 
 
 
@@ -74,7 +74,7 @@ Name | Type | Description
 ### Methods
 
 
-#### registerAsDelegatedAdministrator(accountId, servicePrincipal) <a id="aws-bootstrap-kit-account-registerasdelegatedadministrator"></a>
+#### registerAsDelegatedAdministrator(accountId, servicePrincipal) <a id="naakwu-aws-bootstrap-kit-account-registerasdelegatedadministrator"></a>
 
 
 
@@ -90,7 +90,7 @@ registerAsDelegatedAdministrator(accountId: string, servicePrincipal: string): v
 
 
 
-## class AwsOrganizationsStack  <a id="aws-bootstrap-kit-awsorganizationsstack"></a>
+## class AwsOrganizationsStack  <a id="naakwu-aws-bootstrap-kit-awsorganizationsstack"></a>
 
 A Stack creating the Software Development Life Cycle (SDLC) Organization.
 
@@ -108,7 +108,7 @@ new AwsOrganizationsStack(scope: Construct, id: string, props: AwsOrganizationsS
 
 * **scope** (<code>[Construct](#constructs-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
-* **props** (<code>[AwsOrganizationsStackProps](#aws-bootstrap-kit-awsorganizationsstackprops)</code>)  *No description*
+* **props** (<code>[AwsOrganizationsStackProps](#naakwu-aws-bootstrap-kit-awsorganizationsstackprops)</code>)  *No description*
   * **analyticsReporting** (<code>boolean</code>)  Include runtime versioning information in this Stack. __*Default*__: `analyticsReporting` setting of containing `App`, or value of 'aws:cdk:version-reporting' context key
   * **description** (<code>string</code>)  A description of the stack. __*Default*__: No description.
   * **env** (<code>[Environment](#aws-cdk-lib-environment)</code>)  The AWS environment (account/region) where this stack will be deployed. __*Default*__: The environment of the containing `Stage` if available, otherwise create the stack will be environment-agnostic.
@@ -117,9 +117,10 @@ new AwsOrganizationsStack(scope: Construct, id: string, props: AwsOrganizationsS
   * **tags** (<code>Map<string, string></code>)  Stack tags that will be applied to all the taggable resources and the stack itself. __*Default*__: {}
   * **terminationProtection** (<code>boolean</code>)  Whether to enable termination protection for this stack. __*Default*__: false
   * **email** (<code>string</code>)  Email address of the Root account. 
-  * **nestedOU** (<code>Array<[OUSpec](#aws-bootstrap-kit-ouspec)></code>)  Specification of the sub Organizational Unit. 
+  * **nestedOU** (<code>Array<[OUSpec](#naakwu-aws-bootstrap-kit-ouspec)></code>)  Specification of the sub Organizational Unit. 
   * **existingRootHostedZoneId** (<code>string</code>)  The (optional) existing root hosted zone id to use instead of creating one. __*Optional*__
   * **forceEmailVerification** (<code>boolean</code>)  Enable Email Verification Process. __*Optional*__
+  * **organisationLabel** (<code>string</code>)  *No description* __*Optional*__
   * **rootHostedZoneDNSName** (<code>string</code>)  The main DNS domain name to manage. __*Optional*__
   * **thirdPartyProviderDNSUsed** (<code>boolean</code>)  A boolean used to decide if domain should be requested through this delpoyment or if already registered through a third party. __*Optional*__
 
@@ -130,11 +131,11 @@ new AwsOrganizationsStack(scope: Construct, id: string, props: AwsOrganizationsS
 
 Name | Type | Description 
 -----|------|-------------
-**rootDns**? | <code>[RootDns](#aws-bootstrap-kit-rootdns)</code> | __*Optional*__
+**rootDns**? | <code>[RootDns](#naakwu-aws-bootstrap-kit-rootdns)</code> | __*Optional*__
 
 
 
-## class CrossAccountDNSDelegator  <a id="aws-bootstrap-kit-crossaccountdnsdelegator"></a>
+## class CrossAccountDNSDelegator  <a id="naakwu-aws-bootstrap-kit-crossaccountdnsdelegator"></a>
 
 TODO: propose this to fix https://github.com/aws/aws-cdk/issues/8776 High-level construct that creates: 1. A public hosted zone in the current account 2. A record name in the hosted zone id of target account.
 
@@ -175,7 +176,7 @@ new CrossAccountDNSDelegator(scope: Construct, id: string, props: ICrossAccountD
 
 * **scope** (<code>[Construct](#constructs-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
-* **props** (<code>[ICrossAccountDNSDelegatorProps](#aws-bootstrap-kit-icrossaccountdnsdelegatorprops)</code>)  *No description*
+* **props** (<code>[ICrossAccountDNSDelegatorProps](#naakwu-aws-bootstrap-kit-icrossaccountdnsdelegatorprops)</code>)  *No description*
 
 
 
@@ -188,7 +189,7 @@ Name | Type | Description
 
 
 
-## class RootDns  <a id="aws-bootstrap-kit-rootdns"></a>
+## class RootDns  <a id="naakwu-aws-bootstrap-kit-rootdns"></a>
 
 A class creating the main hosted zone and a role assumable by stages account to be able to set sub domain delegation.
 
@@ -206,9 +207,9 @@ new RootDns(scope: Construct, id: string, props: RootDnsProps)
 
 * **scope** (<code>[Construct](#constructs-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
-* **props** (<code>[RootDnsProps](#aws-bootstrap-kit-rootdnsprops)</code>)  *No description*
+* **props** (<code>[RootDnsProps](#naakwu-aws-bootstrap-kit-rootdnsprops)</code>)  *No description*
   * **rootHostedZoneDNSName** (<code>string</code>)  The top level domain name. 
-  * **stagesAccounts** (<code>Array<[Account](#aws-bootstrap-kit-account)></code>)  The stages Accounts taht will need their subzone delegation. 
+  * **stagesAccounts** (<code>Array<[Account](#naakwu-aws-bootstrap-kit-account)></code>)  The stages Accounts taht will need their subzone delegation. 
   * **existingRootHostedZoneId** (<code>string</code>)  The (optional) existing root hosted zone id to use instead of creating one. __*Optional*__
   * **thirdPartyProviderDNSUsed** (<code>boolean</code>)  A boolean indicating if Domain name has already been registered to a third party or if you want this contruct to create it (the latter is not yet supported). __*Optional*__
 
@@ -225,7 +226,7 @@ Name | Type | Description
 ### Methods
 
 
-#### createDNSAutoUpdateRole(account, stageSubZone) <a id="aws-bootstrap-kit-rootdns-creatednsautoupdaterole"></a>
+#### createDNSAutoUpdateRole(account, stageSubZone) <a id="naakwu-aws-bootstrap-kit-rootdns-creatednsautoupdaterole"></a>
 
 
 
@@ -233,13 +234,13 @@ Name | Type | Description
 createDNSAutoUpdateRole(account: Account, stageSubZone: HostedZone): Role
 ```
 
-* **account** (<code>[Account](#aws-bootstrap-kit-account)</code>)  *No description*
+* **account** (<code>[Account](#naakwu-aws-bootstrap-kit-account)</code>)  *No description*
 * **stageSubZone** (<code>[aws_route53.HostedZone](#aws-cdk-lib-aws-route53-hostedzone)</code>)  *No description*
 
 __Returns__:
 * <code>[aws_iam.Role](#aws-cdk-lib-aws-iam-role)</code>
 
-#### createRootHostedZone(props) <a id="aws-bootstrap-kit-rootdns-createroothostedzone"></a>
+#### createRootHostedZone(props) <a id="naakwu-aws-bootstrap-kit-rootdns-createroothostedzone"></a>
 
 
 
@@ -247,16 +248,16 @@ __Returns__:
 createRootHostedZone(props: RootDnsProps): IHostedZone
 ```
 
-* **props** (<code>[RootDnsProps](#aws-bootstrap-kit-rootdnsprops)</code>)  *No description*
+* **props** (<code>[RootDnsProps](#naakwu-aws-bootstrap-kit-rootdnsprops)</code>)  *No description*
   * **rootHostedZoneDNSName** (<code>string</code>)  The top level domain name. 
-  * **stagesAccounts** (<code>Array<[Account](#aws-bootstrap-kit-account)></code>)  The stages Accounts taht will need their subzone delegation. 
+  * **stagesAccounts** (<code>Array<[Account](#naakwu-aws-bootstrap-kit-account)></code>)  The stages Accounts taht will need their subzone delegation. 
   * **existingRootHostedZoneId** (<code>string</code>)  The (optional) existing root hosted zone id to use instead of creating one. __*Optional*__
   * **thirdPartyProviderDNSUsed** (<code>boolean</code>)  A boolean indicating if Domain name has already been registered to a third party or if you want this contruct to create it (the latter is not yet supported). __*Optional*__
 
 __Returns__:
 * <code>[aws_route53.IHostedZone](#aws-cdk-lib-aws-route53-ihostedzone)</code>
 
-#### createStageSubZone(account, rootHostedZoneDNSName) <a id="aws-bootstrap-kit-rootdns-createstagesubzone"></a>
+#### createStageSubZone(account, rootHostedZoneDNSName) <a id="naakwu-aws-bootstrap-kit-rootdns-createstagesubzone"></a>
 
 
 
@@ -264,7 +265,7 @@ __Returns__:
 createStageSubZone(account: Account, rootHostedZoneDNSName: string): HostedZone
 ```
 
-* **account** (<code>[Account](#aws-bootstrap-kit-account)</code>)  *No description*
+* **account** (<code>[Account](#naakwu-aws-bootstrap-kit-account)</code>)  *No description*
 * **rootHostedZoneDNSName** (<code>string</code>)  *No description*
 
 __Returns__:
@@ -272,7 +273,7 @@ __Returns__:
 
 
 
-## class SecureRootUser  <a id="aws-bootstrap-kit-securerootuser"></a>
+## class SecureRootUser  <a id="naakwu-aws-bootstrap-kit-securerootuser"></a>
 
 
 
@@ -295,7 +296,7 @@ new SecureRootUser(scope: Construct, id: string, notificationEmail: string)
 
 
 
-## class ValidateEmail  <a id="aws-bootstrap-kit-validateemail"></a>
+## class ValidateEmail  <a id="naakwu-aws-bootstrap-kit-validateemail"></a>
 
 Email Validation.
 
@@ -313,14 +314,14 @@ new ValidateEmail(scope: Construct, id: string, props: ValidateEmailProps)
 
 * **scope** (<code>[Construct](#constructs-construct)</code>)  The parent Construct instantiating this construct.
 * **id** (<code>string</code>)  This instance name.
-* **props** (<code>[ValidateEmailProps](#aws-bootstrap-kit-validateemailprops)</code>)  *No description*
+* **props** (<code>[ValidateEmailProps](#naakwu-aws-bootstrap-kit-validateemailprops)</code>)  *No description*
   * **email** (<code>string</code>)  Email address of the Root account. 
   * **timeout** (<code>[Duration](#aws-cdk-lib-duration)</code>)  *No description* __*Optional*__
 
 
 
 
-## struct AccountSpec  <a id="aws-bootstrap-kit-accountspec"></a>
+## struct AccountSpec  <a id="naakwu-aws-bootstrap-kit-accountspec"></a>
 
 
 AWS Account input details.
@@ -333,14 +334,15 @@ Name | Type | Description
 **email**? | <code>string</code> | The email associated to the AWS account.<br/>__*Optional*__
 **existingAccountId**? | <code>string</code> | The (optional) id of the account to reuse, instead of creating a new account.<br/>__*Optional*__
 **hostedServices**? | <code>Array<string></code> | List of your services that will be hosted in this account.<br/>__*Optional*__
+**organisationLabel**? | <code>string</code> | __*Optional*__
 **removalPolicy**? | <code>[RemovalPolicy](#aws-cdk-lib-removalpolicy)</code> | RemovalPolicy of the account (wether it must be retained or destroyed). See https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options.<br/>__*Default*__: RemovalPolicy.RETAIN
 **stageName**? | <code>string</code> | The (optional) Stage name to be used in CI/CD pipeline.<br/>__*Optional*__
 **stageOrder**? | <code>number</code> | The (optional) Stage deployment order.<br/>__*Optional*__
-**type**? | <code>[AccountType](#aws-bootstrap-kit-accounttype)</code> | The account type.<br/>__*Optional*__
+**type**? | <code>[AccountType](#naakwu-aws-bootstrap-kit-accounttype)</code> | The account type.<br/>__*Optional*__
 
 
 
-## struct AwsOrganizationsStackProps 🔹 <a id="aws-bootstrap-kit-awsorganizationsstackprops"></a>
+## struct AwsOrganizationsStackProps 🔹 <a id="naakwu-aws-bootstrap-kit-awsorganizationsstackprops"></a>
 
 
 Properties for AWS SDLC Organizations Stack.
@@ -350,12 +352,13 @@ Properties for AWS SDLC Organizations Stack.
 Name | Type | Description 
 -----|------|-------------
 **email**🔹 | <code>string</code> | Email address of the Root account.
-**nestedOU**🔹 | <code>Array<[OUSpec](#aws-bootstrap-kit-ouspec)></code> | Specification of the sub Organizational Unit.
+**nestedOU**🔹 | <code>Array<[OUSpec](#naakwu-aws-bootstrap-kit-ouspec)></code> | Specification of the sub Organizational Unit.
 **analyticsReporting**?🔹 | <code>boolean</code> | Include runtime versioning information in this Stack.<br/>__*Default*__: `analyticsReporting` setting of containing `App`, or value of 'aws:cdk:version-reporting' context key
 **description**?🔹 | <code>string</code> | A description of the stack.<br/>__*Default*__: No description.
 **env**?🔹 | <code>[Environment](#aws-cdk-lib-environment)</code> | The AWS environment (account/region) where this stack will be deployed.<br/>__*Default*__: The environment of the containing `Stage` if available, otherwise create the stack will be environment-agnostic.
 **existingRootHostedZoneId**?🔹 | <code>string</code> | The (optional) existing root hosted zone id to use instead of creating one.<br/>__*Optional*__
 **forceEmailVerification**?🔹 | <code>boolean</code> | Enable Email Verification Process.<br/>__*Optional*__
+**organisationLabel**?🔹 | <code>string</code> | __*Optional*__
 **rootHostedZoneDNSName**?🔹 | <code>string</code> | The main DNS domain name to manage.<br/>__*Optional*__
 **stackName**?🔹 | <code>string</code> | Name to deploy the stack with.<br/>__*Default*__: Derived from construct path.
 **synthesizer**?🔹 | <code>[IStackSynthesizer](#aws-cdk-lib-istacksynthesizer)</code> | Synthesis method to use while deploying this stack.<br/>__*Default*__: `DefaultStackSynthesizer` if the `@aws-cdk/core:newStyleStackSynthesis` feature flag is set, `LegacyStackSynthesizer` otherwise.
@@ -365,7 +368,7 @@ Name | Type | Description
 
 
 
-## interface IAccountProps  <a id="aws-bootstrap-kit-iaccountprops"></a>
+## interface IAccountProps  <a id="naakwu-aws-bootstrap-kit-iaccountprops"></a>
 
 
 Properties of an AWS account.
@@ -379,16 +382,17 @@ Name | Type | Description
 **name** | <code>string</code> | The name of the AWS Account.
 **hostedServices**? | <code>Array<string></code> | List of your services that will be hosted in this account.<br/>__*Optional*__
 **id**? | <code>string</code> | The AWS account Id.<br/>__*Optional*__
+**organisationLabel**? | <code>string</code> | __*Optional*__
 **parentOrganizationalUnitId**? | <code>string</code> | The potential Organizational Unit Id the account should be placed in.<br/>__*Optional*__
 **parentOrganizationalUnitName**? | <code>string</code> | The potential Organizational Unit Name the account should be placed in.<br/>__*Optional*__
 **removalPolicy**? | <code>[RemovalPolicy](#aws-cdk-lib-removalpolicy)</code> | RemovalPolicy of the account.<br/>__*Default*__: RemovalPolicy.RETAIN
 **stageName**? | <code>string</code> | The (optional) Stage name to be used in CI/CD pipeline.<br/>__*Optional*__
 **stageOrder**? | <code>number</code> | The (optional) Stage deployment order.<br/>__*Optional*__
-**type**? | <code>[AccountType](#aws-bootstrap-kit-accounttype)</code> | The account type.<br/>__*Optional*__
+**type**? | <code>[AccountType](#naakwu-aws-bootstrap-kit-accounttype)</code> | The account type.<br/>__*Optional*__
 
 
 
-## interface ICrossAccountDNSDelegatorProps  <a id="aws-bootstrap-kit-icrossaccountdnsdelegatorprops"></a>
+## interface ICrossAccountDNSDelegatorProps  <a id="naakwu-aws-bootstrap-kit-icrossaccountdnsdelegatorprops"></a>
 
 
 Properties to create delegated subzone of a zone hosted in a different account.
@@ -405,7 +409,7 @@ Name | Type | Description
 
 
 
-## struct OUSpec  <a id="aws-bootstrap-kit-ouspec"></a>
+## struct OUSpec  <a id="naakwu-aws-bootstrap-kit-ouspec"></a>
 
 
 Organizational Unit Input details.
@@ -414,13 +418,13 @@ Organizational Unit Input details.
 
 Name | Type | Description 
 -----|------|-------------
-**accounts** | <code>Array<[AccountSpec](#aws-bootstrap-kit-accountspec)></code> | Accounts' specification inside in this Organizational Unit.
 **name** | <code>string</code> | Name of the Organizational Unit.
-**nestedOU**? | <code>Array<[OUSpec](#aws-bootstrap-kit-ouspec)></code> | Specification of sub Organizational Unit.<br/>__*Optional*__
+**accounts**? | <code>Array<[AccountSpec](#naakwu-aws-bootstrap-kit-accountspec)></code> | Accounts' specification inside in this Organizational Unit.<br/>__*Optional*__
+**nestedOU**? | <code>Array<[OUSpec](#naakwu-aws-bootstrap-kit-ouspec)></code> | Specification of sub Organizational Unit.<br/>__*Optional*__
 
 
 
-## struct RootDnsProps  <a id="aws-bootstrap-kit-rootdnsprops"></a>
+## struct RootDnsProps  <a id="naakwu-aws-bootstrap-kit-rootdnsprops"></a>
 
 
 Properties for RootDns.
@@ -430,13 +434,13 @@ Properties for RootDns.
 Name | Type | Description 
 -----|------|-------------
 **rootHostedZoneDNSName** | <code>string</code> | The top level domain name.
-**stagesAccounts** | <code>Array<[Account](#aws-bootstrap-kit-account)></code> | The stages Accounts taht will need their subzone delegation.
+**stagesAccounts** | <code>Array<[Account](#naakwu-aws-bootstrap-kit-account)></code> | The stages Accounts taht will need their subzone delegation.
 **existingRootHostedZoneId**? | <code>string</code> | The (optional) existing root hosted zone id to use instead of creating one.<br/>__*Optional*__
 **thirdPartyProviderDNSUsed**? | <code>boolean</code> | A boolean indicating if Domain name has already been registered to a third party or if you want this contruct to create it (the latter is not yet supported).<br/>__*Optional*__
 
 
 
-## struct ValidateEmailProps  <a id="aws-bootstrap-kit-validateemailprops"></a>
+## struct ValidateEmailProps  <a id="naakwu-aws-bootstrap-kit-validateemailprops"></a>
 
 
 Properties of ValidateEmail.
@@ -450,7 +454,7 @@ Name | Type | Description
 
 
 
-## enum AccountType  <a id="aws-bootstrap-kit-accounttype"></a>
+## enum AccountType  <a id="naakwu-aws-bootstrap-kit-accounttype"></a>
 
 The type of the AWS account.
 
@@ -458,6 +462,6 @@ Name | Description
 -----|-----
 **CICD** |The account used to deploy CI/CD pipelines (See [here](https://cs.github.com/?scopeName=bk&scope=repo%3Aawslabs%2Faws-bootstrap-kit&q=AccountType.CICD) for internal usage).
 **STAGE** |Accounts which will be used to deploy Stage environments (staging/prod ...). (See [here](https://cs.github.com/?scopeName=bk&scope=repo%3Aawslabs%2Faws-bootstrap-kit&q=AccountType.STAGE) for internal usage).
-**PLAYGROUND** |Accounts dedicated to developpers work.
+**PLAYGROUND** |Sandbox accounts dedicated to developers work.
 
 
