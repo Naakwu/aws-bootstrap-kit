@@ -50,7 +50,19 @@ export class RootDns extends Construct {
       );
       this.stagesHostedZones.push(stageSubZone);
       this.createDNSAutoUpdateRole(account, stageSubZone);
+
       if (stageSubZone.hostedZoneNameServers) {
+
+        const target = RecordTarget.fromValues(...stageSubZone.hostedZoneNameServers?stageSubZone.hostedZoneNameServers:'');
+        const recordName = stageSubZone.zoneName;
+        const zone = this.rootHostedZone;
+        const accountName = account.accountName;
+
+        console.log(`target ${target}`)
+        console.log(`recordName ${recordName}`)
+        console.log(`zone ${zone}`)
+        console.log(`target ${accountName}`)
+
         new route53.RecordSet(
           this,
           `${account.accountName}SubZoneDelegationNSRecord`,
