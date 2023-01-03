@@ -56,7 +56,8 @@ export class RootDns extends Construct {
         const target = RecordTarget.fromValues(...stageSubZone.hostedZoneNameServers?stageSubZone.hostedZoneNameServers:'');
         const recordName = stageSubZone.zoneName;
         const zone = this.rootHostedZone;
-        const accountName = `${account.accountName}SubZoneDelegationNSRecord`
+        const number = Math.floor(Math.random() * 1000)
+        const accountName = `${number}SubZoneDelegationNSRecord`
 
         console.log(`target values ${target.values}`)
         console.log(`target aliasTarget ${target.aliasTarget}`)
