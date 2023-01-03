@@ -23,6 +23,7 @@ import {OrganizationTrail} from './organization-trail';
 import {version} from '../package.json';
 import { RootDns } from './dns';
 import { ValidateEmail } from './validate-email';
+import {SecureRootUser} from "./secure-root-user";
 
 /**
  * AWS Account input details
@@ -241,6 +242,6 @@ export class AwsOrganizationsStack extends Stack {
     } else{
 
     }
-    //new SecureRootUser(this, 'SecureRootUser', email);
+    new SecureRootUser(this, 'SecureRootUser', email);
   }
 }

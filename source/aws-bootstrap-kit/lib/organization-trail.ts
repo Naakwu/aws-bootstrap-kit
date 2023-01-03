@@ -186,35 +186,35 @@ export class OrganizationTrail extends Construct {
         //   retryDelay: 96.13506571773598
         // }
 
-        // const startLogging =  new AwsCustomResource(this,
-        //     "OrganizationTrailStartLogging",
-        //     {
-        //         onCreate: {
-        //             service: 'CloudTrail',
-        //             action: 'startLogging', //call startLogging of the Javascript SDK https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudTrail.html#startLogging-property
-        //             physicalResourceId: PhysicalResourceId.of('OrganizationTrailStartLogging'),
-        //             parameters:
-        //             {
-        //                 Name: organizationTrailName
-        //             }
-        //         },
-        //         onDelete: {
-        //             service: 'CloudTrail',
-        //             action: 'stopLogging', //call stopLogging of the Javascript SDK https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudTrail.html#stopLogging-property
-        //             physicalResourceId: PhysicalResourceId.of('OrganizationTrailStartLogging'),
-        //             parameters:
-        //             {
-        //                 Name: organizationTrailName
-        //             }
-        //         },
-        //         installLatestAwsSdk: false,
-        //         policy: AwsCustomResourcePolicy.fromSdkCalls(
-        //             {
-        //                 resources: AwsCustomResourcePolicy.ANY_RESOURCE
-        //             }
-        //         )
-        //     }
-        // );
-        // startLogging.node.addDependency(organizationTrailCreate);
+        const startLogging =  new AwsCustomResource(this,
+            "OrganizationTrailStartLogging",
+            {
+                onCreate: {
+                    service: 'CloudTrail',
+                    action: 'startLogging', //call startLogging of the Javascript SDK https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudTrail.html#startLogging-property
+                    physicalResourceId: PhysicalResourceId.of('OrganizationTrailStartLogging'),
+                    parameters:
+                    {
+                        Name: organizationTrailName
+                    }
+                },
+                onDelete: {
+                    service: 'CloudTrail',
+                    action: 'stopLogging', //call stopLogging of the Javascript SDK https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudTrail.html#stopLogging-property
+                    physicalResourceId: PhysicalResourceId.of('OrganizationTrailStartLogging'),
+                    parameters:
+                    {
+                        Name: organizationTrailName
+                    }
+                },
+                installLatestAwsSdk: false,
+                policy: AwsCustomResourcePolicy.fromSdkCalls(
+                    {
+                        resources: AwsCustomResourcePolicy.ANY_RESOURCE
+                    }
+                )
+            }
+        );
+        startLogging.node.addDependency(organizationTrailCreate);
     }
 }

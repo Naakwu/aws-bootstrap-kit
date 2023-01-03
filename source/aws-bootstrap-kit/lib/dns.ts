@@ -53,18 +53,11 @@ export class RootDns extends Construct {
 
       if (stageSubZone.hostedZoneNameServers) {
 
-        const target = RecordTarget.fromValues(...stageSubZone.hostedZoneNameServers?stageSubZone.hostedZoneNameServers:'');
+        // const target = RecordTarget.fromValues(...stageSubZone.hostedZoneNameServers?stageSubZone.hostedZoneNameServers:'');
         const recordName = stageSubZone.zoneName;
         const recordNameAlt = recordName.replace(".", "");
 
-        const zone = this.rootHostedZone;
         const accountName = `${recordNameAlt}-${accountIndex}-SubZoneDelegationNSRecord`
-
-        console.log(`target values ${target.values}`)
-        console.log(`target aliasTarget ${target.aliasTarget}`)
-        console.log(`recordName ${recordName}`)
-        console.log(`zone ${zone}`)
-        console.log(`accountName ${accountName}`)
 
         new route53.RecordSet(
           this,
