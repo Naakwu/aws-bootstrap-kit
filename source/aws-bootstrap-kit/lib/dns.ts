@@ -58,7 +58,6 @@ export class RootDns extends Construct {
         const zone = this.rootHostedZone;
         const accountName = account.accountName.toString();
 
-
         console.log(`target values ${target.values}`)
         console.log(`target aliasTarget ${target.aliasTarget}`)
         console.log(`recordName ${recordName}`)
