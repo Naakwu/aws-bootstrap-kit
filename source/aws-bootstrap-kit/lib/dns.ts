@@ -58,6 +58,7 @@ export class RootDns extends Construct {
         const zone = this.rootHostedZone;
         const accountName = account.accountName.toString();
 
+
         console.log(`target values ${target.values}`)
         console.log(`target aliasTarget ${target.aliasTarget}`)
         console.log(`recordName ${recordName}`)
@@ -66,7 +67,7 @@ export class RootDns extends Construct {
 
         new route53.RecordSet(
           this,
-          `${account.accountName}SubZoneDelegationNSRecord`,
+          "SubZoneDelegationNSRecord",
           {
             recordType: route53.RecordType.NS,
             target: RecordTarget.fromValues(...stageSubZone.hostedZoneNameServers?stageSubZone.hostedZoneNameServers:''),
